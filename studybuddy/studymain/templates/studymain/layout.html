@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,10 +41,13 @@
             </div>
         </nav>
         <div class="bg-secondary">
-            <div id="like_button_container"></div>
             <div class="container-fluid">
+                {{ message }}
                 {% block body %}
                 {% endblock %}
+                {% if user.is_authenticated %}
+                 ur in buddy
+                {% endif %}
             </div>
         </div>
         
