@@ -41,13 +41,10 @@
             </div>
         </nav>
         <div class="bg-secondary">
-            <div class="container-fluid">
-                {{ message }}
+            <div class="container-fluid ">
+                
                 {% block body %}
                 {% endblock %}
-                {% if user.is_authenticated %}
-                 ur in buddy
-                {% endif %}
             </div>
         </div>
         

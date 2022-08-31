@@ -68,7 +68,7 @@ def login_lol(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "network/login.html", {
+            return render(request, "studymain/login.html", {
                 "message": "Invalid username and/or password."
             })
     else:
