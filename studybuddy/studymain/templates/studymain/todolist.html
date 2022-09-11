@@ -3,8 +3,18 @@
 
 
 {% block body %}
+
 <a href="{% url 'logout' %}" class="text-reset fw-bold"> <h6 class="fw-bold text-light text-end opacity-75">Logout</h6></a>
     <div class="container-sm justify-content-center">
+        <div class="row">
+            <div class="col-3 p-2">
+                <a href="{% url 'index' %}" class="text-reset fw-bold">
+                    <button type="button" class="btn btn-dark opacity-75">
+                        <i class="bi bi-house-fill text-light fs-3 p-3"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="col-auto">
                 <blockquote class="blockquote text-light text-center bg-dark bg-opacity-75 m-3 p-3 rounded rounded-4 ">
@@ -18,17 +28,11 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-auto">
-            <H1 class="m-3 text-light">Home</H1>
+            <H1 class="m-3 text-light">Current tasks</H1>
         </div>
     </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-6 m-3 p-3 thumbnail">
-            <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1168&q=80" class="img-fluid img-thumbnail border rounded mx-auto d-block border-dark H-50  opacity-75" alt="schedule image">
-            <div class="centered fs-1 fw-bold">Class Planner</div>
-        </div>
-        
-    </div>
+    
 
     
 

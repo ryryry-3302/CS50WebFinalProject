@@ -73,3 +73,7 @@ def login_lol(request):
             })
     else:
         return render(request, "studymain/login.html")
+
+def todolist(request):
+    if request.method == "GET":
+        return render(request, "studymain/todolist.html")
