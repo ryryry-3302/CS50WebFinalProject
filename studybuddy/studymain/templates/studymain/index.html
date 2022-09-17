@@ -3,7 +3,17 @@
 
 
 {% block body %}
-<a href="{% url 'logout' %}" class="text-reset fw-bold"> <h6 class="fw-bold text-light text-end opacity-75">Logout</h6></a>
+<div class="row justify-content-between">
+    <div class="col-auto">
+        <h6 class="fw-bold text-light text-end opacity-75">Welcome {{user.username}}</h6>
+    </div>
+    <div class="col-auto">
+        <a href="{% url 'logout' %}" class="text-reset fw-bold text-light text-end opacity-75">
+            <h6 class="text-end">Logout</h6> 
+         </a>
+    </div>
+</div>
+
     <div class="container-sm justify-content-center">
         <div class="row justify-content-center">
             <div class="col-auto">
@@ -25,9 +35,15 @@
     <div class="row justify-content-center">
         <div class="col-md-6 m-3 p-3 thumbnail">
             <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1168&q=80" class="img-fluid img-thumbnail border rounded mx-auto d-block border-dark H-50  opacity-75" alt="schedule image">
-            <div class="centered fs-1 fw-bold">Class Planner</div>
+            <div class="centered fs-1 fw-bold">Task Manager</div>
         </div>
-        
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 m-3 p-3 thumbnail">
+            <img src="https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80" class="img-fluid img-thumbnail border rounded mx-auto d-block border-dark H-50  opacity-75" alt="schedule image">
+            <div class="centered fs-1 fw-bold">Flip Cards</div>
+        </div>
     </div>
 
     
