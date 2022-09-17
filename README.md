@@ -13,4 +13,13 @@ Makes use of Django's user model and login verification to easilyadd in user reg
 
 Using Javascript to fetch dynamically and update daily quotes source from Zenquote's free api, through my own cors-anywhere server hosted on heroku.
 
+# Applications
 
+## Task manager
+Using django models to seamlessly create task in the sql database. Users can edit, finish and review previous completed tasks.
+
+## Flip cards
+Users are able to create their own digital flip cards to aid in revising and memorising new words, science definitions and jargon.
+
+## Pomodoro timer
+## Exam Scheduler
