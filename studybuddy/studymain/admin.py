@@ -13,8 +13,8 @@ class CustomUserAdmin(UserAdmin):
 
 
 class TaskAdmin(admin.ModelAdmin):
-    def get_readonly_fields(self, request, obj=None):
-        return [f.name for f in obj._meta.fields if not f.editable]
+#to list out non-editable fields in admin website, write the field name in the bracket    
+    readonly_fields=('create_time',)
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Task, TaskAdmin)

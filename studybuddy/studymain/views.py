@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from .models import CustomUser
+from .models import CustomUser, Task
 from .forms import CustomUserCreationForm
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -76,4 +76,7 @@ def login_lol(request):
 
 def todolist(request):
     if request.method == "GET":
-        return render(request, "studymain/todolist.html")
+        tasks = Task.objects.filter(poster=request.user).all()
+        return render(request, "studymain/todolist.html", {
+            'tasks' : tasks
+        })
