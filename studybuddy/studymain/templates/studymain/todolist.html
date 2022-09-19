@@ -28,9 +28,11 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-auto">
-            <H1 class="m-3 text-light">Current tasks</H1>
+            <H1 class="m-3 text-light text-center">Current tasks</H1>
+            <div class="row justify-content-center">
             {% for task in tasks %}
-                <div class="row justify-content-center">
+                
+                
                     <div class="col-auto bg-dark bg-opacity-75 m-3 p-3 rounded rounded-4 task">
                         <i class="overflow bi bi-arrows-angle-expand me-3 fs-3 text-secondary opacity-0" data-bs-toggle="modal" data-bs-target="#Modal-{{task.id}}"></i>
                         <h2 class="text-center mb-3" data-bs-toggle="modal" data-bs-target="#Modal-{{task.id}}">
@@ -52,7 +54,7 @@
                         </div>
                         
                     </div>    
-                </div>
+                
                 <div class="modal fade" id="Modal-{{task.id}}" tabindex="-1" aria-labelledby="ModalLabel-{{task.id}}" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -91,8 +93,10 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                </div>
+                
             {% endfor %}
+            </div>
         </div>
     </div>
 

@@ -78,9 +78,10 @@ def login_lol(request):
 def todolist(request):
     if request.method == "GET":
         tasks = Task.objects.filter(poster=request.user).all()
-        
+
 
         return render(request, "studymain/todolist.html", {
             'tasks' : tasks,
-            'today' : timezone.now()
+            'today' : timezone.now(),
+            'counter' : 0
         })
