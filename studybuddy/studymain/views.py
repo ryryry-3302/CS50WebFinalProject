@@ -10,6 +10,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import JsonResponse
+from django.utils import timezone
 
 def register(request):
     form = CustomUserCreationForm(request.POST or None, request.FILES or None)
@@ -77,6 +78,9 @@ def login_lol(request):
 def todolist(request):
     if request.method == "GET":
         tasks = Task.objects.filter(poster=request.user).all()
+        
+
         return render(request, "studymain/todolist.html", {
-            'tasks' : tasks
+            'tasks' : tasks,
+            'today' : timezone.now()
         })

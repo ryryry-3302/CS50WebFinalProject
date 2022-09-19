@@ -30,11 +30,11 @@
         <div class="col-auto">
             <H1 class="m-3 text-light">Current tasks</H1>
             {% for task in tasks %}
-                <div class="row justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="row justify-content-center">
                     <div class="col-auto bg-dark bg-opacity-75 m-3 p-3 rounded rounded-4 task">
-                        <i class="overflow bi bi-arrows-angle-expand me-3 fs-3 text-secondary opacity-0"></i>
-                        <h2 class="text-center">
-                            {{task.title}}
+                        <i class="overflow bi bi-arrows-angle-expand me-3 fs-3 text-secondary opacity-0" data-bs-toggle="modal" data-bs-target="#Modal-{{task.id}}"></i>
+                        <h2 class="text-center mb-3" data-bs-toggle="modal" data-bs-target="#Modal-{{task.id}}">
+                            {{task.title.capitalize}}
                         </h2> 
                         <div class="container">
                             
@@ -53,19 +53,41 @@
                         
                     </div>    
                 </div>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="Modal-{{task.id}}" tabindex="-1" aria-labelledby="ModalLabel-{{task.id}}" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                          <h5 class="modal-title" id="ModalLabel-{{task.id}}">{{task.title.capitalize}}
+                            
+                          </h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          ...
+                            <h6 class="">Description:</h6>
+                            <p>{{task.body}}</p>
+                            <h6 class="">Due:</h6> 
+                            <p>{{task.due_date}}
+                                <span class="text-muted">({{ task.due_date|timeuntil:today }})</span>
+                            </p>
+
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                            <div class="row">
+                                <div class="col-auto text-start">
+                                    {% if task.create_time == task.modified%}
+                                    <i class="text-muted">Created at: {{task.create_time}}</i>
+                                    {% else %}
+                                    <i class="text-muted">Last Modified at: {{task.modified}}</i>
+                                    {% endif%}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                          
                         </div>
                       </div>
                     </div>
