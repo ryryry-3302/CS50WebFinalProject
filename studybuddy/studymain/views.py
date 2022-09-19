@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import CustomUser, Task
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, TaskForm
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.contrib.auth.decorators import login_required
@@ -78,10 +78,10 @@ def login_lol(request):
 def todolist(request):
     if request.method == "GET":
         tasks = Task.objects.filter(poster=request.user).all()
-
+        form = TaskForm(request.POST or None, request.FILES or None)
 
         return render(request, "studymain/todolist.html", {
             'tasks' : tasks,
             'today' : timezone.now(),
-            'counter' : 0
+            'form'  : form
         })
