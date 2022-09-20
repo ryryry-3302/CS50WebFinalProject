@@ -5,7 +5,8 @@
 {% block body %}
 <form method="POST" action="{% url 'register' %}">
     {% csrf_token %}
-    {{ form}}
+    {{ form|crispy }}
+    {{ form.media }}
     
     <div class="row justify-content-center">
         <input type="submit" class="btn btn-dark col-auto m-2">
