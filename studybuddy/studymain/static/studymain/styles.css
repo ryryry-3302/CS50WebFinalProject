@@ -19,3 +19,11 @@
   transition: 1s;
   opacity: 75%!important;
 }
+
+.calendar caption {
+  background: black!important;
+}
+
+.calendar-shortcuts {
+  background: grey!important;
+}
