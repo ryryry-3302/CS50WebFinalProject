@@ -27,3 +27,17 @@
 .calendar-shortcuts {
   background: grey!important;
 }
+
+.clockbox {
+  background: black!important;
+}
+
+.datetimeshortcuts a {
+  text-decoration: none!important;
+  color : #084a99!important;
+}
+
+.calendarbox {
+  position: fixed;
+  z-index: 9999!important;
+}
