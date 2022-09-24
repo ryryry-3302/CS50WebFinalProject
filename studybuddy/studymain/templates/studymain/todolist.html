@@ -54,6 +54,7 @@
         
         
     </div>
+    <script src="{% static 'studymain/script.js' %}"></script>
     <div class="row justify-content-center">
         <div class="col-auto">
             <H1 class="m-3 text-light text-center">Current tasks</H1>
@@ -94,7 +95,7 @@
                         </div>
                         <div class="modal-body">
                             <h6 class="">Description:</h6>
-                            <p>{{task.body}}</p>
+                            <p id="body-{{task.id}}">{{task.body}}</p>
                             <h6 class="">Due:</h6> 
                             <p>{{task.due_date}}
                                 <span class="text-muted">({{ task.due_date|timeuntil:today }})</span>
@@ -114,7 +115,7 @@
                             <div class="row">
                                 <div class="col-auto">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" id="button-{{task.id}}" onClick="edit(this.id)" class="btn btn-primary">Edit</button>
                                 </div>
                             </div>
                           
