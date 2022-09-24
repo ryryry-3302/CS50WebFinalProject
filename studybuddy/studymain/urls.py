@@ -11,5 +11,6 @@ urlpatterns = [
     path("logout", views.logout_lol, name="logout"),
     path('jsi18n', JavaScriptCatalog.as_view(), name='js-catlog'),
     path("login", views.login_lol, name="login"),
-    path("todolist", views.todolist, name="todo")
+    path("todolist", views.todolist, name="todo"),
+    path("createtask", views.createtask, name="CreateTask"),
 ]

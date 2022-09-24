@@ -20,14 +20,12 @@ class CustomUserChangeForm(UserChangeForm):
         fields = ("username", "email")
 
 class TaskForm(ModelForm):
+    due_date = forms.SplitDateTimeField(widget=AdminSplitDateTime())
     
-
     class Meta:
         model = Task
         fields = ['title', 'body', 'due_date']
-        widgets = {
-            'due_date' : AdminSplitDateTime()
-        }
+        
         
 
     

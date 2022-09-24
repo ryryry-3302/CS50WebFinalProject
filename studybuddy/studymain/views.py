@@ -85,3 +85,14 @@ def todolist(request):
             'today' : timezone.now(),
             'form'  : form
         })
+
+
+def createtask(request):
+    if request.method == "POST":
+        f = TaskForm(request.POST, request.FILES)
+        if f.is_valid():
+        # save the form data to model
+            result = f.save(commit=False)
+            result.poster = request.user
+            result.save()
+        return HttpResponseRedirect(reverse("todo"))
