@@ -64,7 +64,7 @@
                 
                     <div class="col-auto bg-dark bg-opacity-75 m-3 p-3 rounded rounded-4 task">
                         <i class="overflow bi bi-arrows-angle-expand me-3 fs-3 text-secondary opacity-0" data-bs-toggle="modal" data-bs-target="#Modal-{{task.id}}"></i>
-                        <h2 class="text-center mb-3" data-bs-toggle="modal" data-bs-target="#Modal-{{task.id}}">
+                        <h2 class="text-center mb-3" id="task-{{task.id}}" data-bs-toggle="modal" data-bs-target="#Modal-{{task.id}}">
                             {{task.title.capitalize}}
                         </h2> 
                         <div class="container">
@@ -97,8 +97,8 @@
                             <h6 class="">Description:</h6>
                             <p id="body-{{task.id}}">{{task.body}}</p>
                             <h6 class="">Due:</h6> 
-                            <p>{{task.due_date}}
-                                <span class="text-muted">({{ task.due_date|timeuntil:today }})</span>
+                            <p id ="due-{{task.id}}">{{task.due_date}}
+                                <span id="nested-{{task.id}}" class="text-muted">({{ task.due_date|timeuntil:today }})</span>
                             </p>
 
                         </div>
@@ -114,8 +114,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-auto">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" id="close-{{task.id}}" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="button" id="button-{{task.id}}" onClick="edit(this.id)" class="btn btn-primary">Edit</button>
+                                    <button type="button" id="submit-{{task.id}}" class="d-none btn btn-success">Submit</button>
+                                    <button type="button" id="cancel-{{task.id}}" class="d-none btn btn-danger" >Cancel</button>
                                 </div>
                             </div>
                           

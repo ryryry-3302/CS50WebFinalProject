@@ -40,6 +40,7 @@ def register(request):
     }
     )
 
+
 def index(request):
     if request.user.is_authenticated:
         message = request.user
@@ -75,6 +76,7 @@ def login_lol(request):
     else:
         return render(request, "studymain/login.html")
 
+@login_required
 def todolist(request):
     if request.method == "GET":
         tasks = Task.objects.filter(poster=request.user).all()
@@ -86,7 +88,7 @@ def todolist(request):
             'form'  : form
         })
 
-
+@login_required
 def createtask(request):
     if request.method == "POST":
         f = TaskForm(request.POST, request.FILES)
@@ -96,3 +98,21 @@ def createtask(request):
             result.poster = request.user
             result.save()
         return HttpResponseRedirect(reverse("todo"))
+
+@login_required
+@csrf_exempt
+def edittask(request, task_id):
+
+    try:
+        task = Task.objects.get(poster=request.user, pk=task_id)
+    except task.DoesNotExist:
+        return JsonResponse({"error": "Post not found."}, status=404)
+
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        if data.get("title") is not None:
+            task.title = data["title"]
+        if data.get("body") is not None:
+            task.body = data["body"]
+        task.save()
+        return HttpResponse(status=204)

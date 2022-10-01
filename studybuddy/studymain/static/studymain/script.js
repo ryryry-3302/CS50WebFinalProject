@@ -33,21 +33,33 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function edit(clicked_id){
+    console.log(document.querySelector(`#${clicked_id}`).innerHTML)
     if (document.querySelector(`#${clicked_id}`).innerHTML == 'Edit'){
         let buttonid = clicked_id;
         let button = document.querySelector(`#${clicked_id}`);
-        button.innerHTML = 'Cancel';
+        //makes edit button go away
+        document.getElementById(`${clicked_id}`).classList.add("d-none");
+        
         
         clicked_id = clicked_id.replace('button-','');
         let id = parseInt(clicked_id);
-        
+
+        document.getElementById(`close-${id}`).classList.add("d-none");
+        document.getElementById(`cancel-${id}`).classList.remove("d-none");
+        let submit = document.querySelector(`#submit-${id}`);
+        submit.classList.remove("d-none");
+
+
         ///selects original title
         let originalTitle = document.querySelector(`#ModalLabel-${id}`);
         let originalBody = document.querySelector(`#body-${id}`);
-        let originalDue = document.querySelector(`due-${id}`)
+
         
         let divToChange = originalTitle.parentNode;
+        let divToChangeBody = originalBody.parentNode;
+        
         let old = divToChange.innerHTML;
+        let oldbody= divToChangeBody.innerHTML;
         /// creates element to replace original title
 
         let newTitle = document.createElement('TEXTAREA');
@@ -59,15 +71,21 @@ function edit(clicked_id){
         let newBody = document.createElement('TEXTAREA');
         newBody.setAttribute('id', `body-text-new-${id}`);
         newBody.innerHTML = originalBody.innerHTML;
+
+       
+        
         
         divToChange.replaceChild(newTitle, originalTitle);
-        divToChange.replaceChild(newBody, originalBody);
-        divToChange.querySelector('.submitbutton').classList.remove("d-none")
-        divToChange.querySelector('.submitbutton').addEventListener('click', ()=>{
-            
+        divToChangeBody.replaceChild(newBody, originalBody);
+        
+        console.log("i am changing stuff")
+
+        
+        document.querySelector(`#submit-${id}`).addEventListener('click', ()=>{
+        
         let newtitle = document.getElementById(`title-text-new-${id}`).value
         let newbody = document.getElementById(`body-text-new-${id}`).value
-        fetch(`/post/${id}`, {
+        fetch(`/edittask/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 'title': newtitle,
@@ -76,17 +94,37 @@ function edit(clicked_id){
             })
        
         divToChange.innerHTML = old;
-        document.querySelector(`#${buttonid}`).innerHTML = 'Edit';
-        console.log(`${poster}: ${newtitle}`);
-        document.querySelector(`#title-${id}`).innerHTML = `${poster}: ${newtitle}`;
+        divToChangeBody.innerHTML = oldbody;
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+          }
+        
+
+        /// dynamicaly update text
+        document.querySelector(`#task-${id}`).innerHTML = capitalizeFirstLetter(`${newtitle}`);
+        document.querySelector(`#ModalLabel-${id}`).innerHTML = capitalizeFirstLetter(`${newtitle}`);
         document.querySelector(`#body-${id}`).innerHTML = `${newbody}`;
+        
+        ///load buttons
+        document.getElementById(`cancel-${id}`).classList.add("d-none");
+        document.getElementById(`submit-${id}`).classList.add("d-none");
+        document.getElementById(`close-${id}`).classList.remove("d-none");
+        document.getElementById(`button-${id}`).classList.remove("d-none");
+    
         })
 
-        button.addEventListener('click', ()=>{
-            if (button.innerHTML === 'Cancel'){
+        
+        document.getElementById(`cancel-${id}`).addEventListener('click', () =>{
+            
             divToChange.innerHTML = old;
-            document.querySelector(`#${buttonid}`).innerHTML = 'Edit';
-            }
+            divToChangeBody.innerHTML = oldbody;
+            document.getElementById(`cancel-${id}`).classList.add("d-none");
+            document.getElementById(`submit-${id}`).classList.add("d-none");
+            document.getElementById(`close-${id}`).classList.remove("d-none");
+            document.getElementById(`button-${id}`).classList.remove("d-none");
+            
+            
         })
         
     }
