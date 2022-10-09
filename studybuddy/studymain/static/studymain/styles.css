@@ -34,11 +34,12 @@
 
 .datetimeshortcuts a {
   text-decoration: none!important;
-  color : #084a99!important;
+  color : #aed1fa!important;
 }
 
 .calendarbox {
   position: fixed;
+  background: black!important;
   z-index: 9999!important;
   top: 300px!important;
 }
