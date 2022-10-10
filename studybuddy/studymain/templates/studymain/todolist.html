@@ -8,14 +8,14 @@
 
 <div class="modal fade" id="CreateForm" tabindex="-1" aria-labelledby="CreateFormLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content bg-dark text-light">
+      <div class="modal-content bg-dark bg-gradient text-light">
         <div class="modal-header">
           <h5 class="modal-title" id="CreateFormLabel">Create Task</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form method="POST" action="{% url 'CreateTask' %}">
             <div class="modal-body">
-                <div class="m-3 p-3">
+                <div class="m-3 p-3" style= "opacity: 90%">
                     {% csrf_token %}
                     
                     {{ form|crispy }}
@@ -25,7 +25,7 @@
                     
             </div>
             <div class="modal-footer">
-                <input type="submit" class="btn btn-dark col-auto m-2" label="Create">
+                <input type="submit" class="btn btn-light col-auto m-2" label="Create" style= "opacity: 75%">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </form>
@@ -72,11 +72,20 @@
                                 <div class="row">  
                                     <div class="col-auto">
                                         {% if not task.done %}
-                                            <input type="radio" class="btn-check rounded rounded-3" name="options-outlined-{{task.id}}" id="{{task.id}}-outlined-done" autocomplete="off" >
+                                            <input type="radio" class="btn-check rounded rounded-3" onClick="done(this.id)" name="options-outlined-{{task.id}}" id="{{task.id}}-outlined-done" autocomplete="off" >
                                             <label class="btn btn-outline-success" for="{{task.id}}-outlined-done">Done<i class="bi bi-check2"></i></label>
                                             
-                                            <input type="radio" class="btn-check" name="options-outlined-{{task.id}}" id="{{task.id}}-outlined-notdone" autocomplete="off" checked>
+                                            <input type="radio" class="btn-check" name="options-outlined-{{task.id}}" onClick="done(this.id)" id="{{task.id}}-outlined-notdone" autocomplete="off" checked>
                                             <label class="btn btn-outline-danger" for="{{task.id}}-outlined-notdone">Not Done<i class="bi bi-x"></i></label>
+                                        
+                                        {% else %}
+                                        
+                                            <input type="radio" class="btn-check rounded rounded-3" onClick="done(this.id)" name="options-outlined-{{task.id}}" id="{{task.id}}-outlined-done" autocomplete="off" checked>
+                                            <label class="btn btn-outline-success" for="{{task.id}}-outlined-done">Done<i class="bi bi-check2"></i></label>
+                                            
+                                            <input type="radio" class="btn-check"  onClick="done(this.id)"name="options-outlined-{{task.id}}" id="{{task.id}}-outlined-notdone" autocomplete="off" >
+                                            <label class="btn btn-outline-danger" for="{{task.id}}-outlined-notdone">Not Done<i class="bi bi-x"></i></label>
+
                                         {% endif %}
                                     </div>
                                 </div>
@@ -98,7 +107,7 @@
                             <p id="body-{{task.id}}">{{task.body}}</p>
                             <h6 class="">Due:</h6> 
                             <p id ="due-{{task.id}}">{{task.due_date}}
-                                <span id="nested-{{task.id}}" class="text-muted">({{ task.due_date|timeuntil:today }})</span>
+                                <span id="nested-{{task.id}}" class="text-secondary">({{ task.due_date|timeuntil:today }})</span>
                             </p>
 
                         </div>
@@ -131,16 +140,20 @@
         </div>
     </div>
 
+    <div class="spacer ">
+    </div>
     
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <blockquote class="blockquote text-light text-center bg-dark bg-opacity-75 m-3 p-3 rounded rounded-4 ">
+    <div class="mt-5 mb-0 row justify-content-center ">
+        <div class="col-auto  align-bottom">
+            <blockquote class="blockquote text-light text-center bg-dark bg-opacity-75 m-3 p-3 rounded rounded-4 align-bottom">
             <H1 id="dailyquote" class="">Loading inspiration :D</H1>
             <footer class=" text-light opacity-75" id="author"></footer>
             </blockquote>
         </div>
     </div>
+
     
     
 
 {% endblock %}
+

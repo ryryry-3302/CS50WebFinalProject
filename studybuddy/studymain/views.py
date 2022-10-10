@@ -116,3 +116,19 @@ def edittask(request, task_id):
             task.body = data["body"]
         task.save()
         return HttpResponse(status=204)
+
+@login_required
+@csrf_exempt
+def completetask(request, task_id):
+    try:
+        task = Task.objects.get(poster=request.user, pk=task_id)
+
+    except task.DoesNotExist:
+        return JsonResponse({"error": "Post not found."}, status=404)
+
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        if data.get("done") is not None:
+            task.done = data["done"]
+        task.save()
+        return HttpResponse(status=204)

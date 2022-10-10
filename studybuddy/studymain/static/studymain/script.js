@@ -32,6 +32,32 @@ document.addEventListener('DOMContentLoaded', () => {
     
 })
 
+function done(clicked_id){
+    const regex1 = /^[^-]*[^ -]/;
+    const regex2 =/\w[^-]*$/;
+    id = clicked_id.match(regex1)[0];
+    donestatus = clicked_id.match(regex2)[0];
+    console.log(donestatus)
+    var currentstatus = true
+
+    if (donestatus === "notdone") {
+        currentstatus = false
+    }
+
+    console.log(`setting task ${id} to ${currentstatus}`)
+
+    fetch(`/completetask/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            'done': currentstatus
+        })
+        })
+
+    
+
+}
+
+
 function edit(clicked_id){
     console.log(document.querySelector(`#${clicked_id}`).innerHTML)
     if (document.querySelector(`#${clicked_id}`).innerHTML == 'Edit'){
