@@ -132,3 +132,8 @@ def completetask(request, task_id):
             task.done = data["done"]
         task.save()
         return HttpResponse(status=204)
+
+@login_required
+@csrf_exempt
+def find(request):
+    return render(request, "studymain/find.html")
