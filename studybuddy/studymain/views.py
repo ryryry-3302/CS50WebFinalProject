@@ -1,3 +1,4 @@
+import re
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
@@ -19,22 +20,21 @@ def register(request):
         # save the form data to model
         result = f.save()
 
-    if request.method == "POST":
+    
 
-        
+
 
         # Check if authentication successful
         if f is not None:
-            username = request.POST["username"]
-            password = request.POST["password1"]
-            user = authenticate(request, username=username, password=password)
-            login(request, user)
+            
+            
+            login(request, result)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "network/login.html", {
+            return render(request, "studymain/login.html", {
                 "message": "Invalid username and/or password."
             })
-    
+
     return render(request, 'studymain/register.html', {
         "form" : form,
     }

@@ -5,7 +5,7 @@ from django.utils import timezone
 class CustomUser(AbstractUser):
     pass
     # add additional fields in here
-
+    
     def __str__(self):
         return self.username
 

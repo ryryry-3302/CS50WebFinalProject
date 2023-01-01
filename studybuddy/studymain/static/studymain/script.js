@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
-    const api_url ="https://quiet-coast-58525.herokuapp.com/https://zenquotes.io/api/quotes/[your_key]";
+    const api_url ="https://zenquotes.io/api/quotes/[your_key]";
 
     async function getapi(url)
     {
